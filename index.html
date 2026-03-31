@@ -6,772 +6,777 @@
 <title>Allah — The Beginning & The End | Islamic eBook for Kids</title>
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Amiri:wght@400;700&family=Nunito:wght@700;800;900&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --teal: #0D9E8A;
-    --gold: #F4C430;
-    --gold-dark: #D4A017;
-    --purple: #6B3FA0;
-    --pink: #E8316A;
-    --orange: #F97316;
-    --green: #16A34A;
-    --blue: #2563EB;
-    --sky: #0EA5E9;
-    --dark: #1E1B4B;
-    --white: #FFFFFF;
-  }
-  * { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+:root {
+  --teal:#0D9E8A; --gold:#F4C430; --gold-dark:#D4A017;
+  --purple:#6B3FA0; --pink:#E8316A; --orange:#F97316;
+  --green:#16A34A; --blue:#2563EB; --sky:#0EA5E9;
+  --dark:#1E1B4B; --white:#FFFFFF;
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+body{
+  font-family:'Nunito',sans-serif;
+  background:radial-gradient(ellipse at top,#1a0a2e 0%,#0d2a1a 60%,#0a1a2e 100%);
+  min-height:100vh; overflow-x:hidden;
+}
 
-  body {
-    font-family:'Nunito',sans-serif;
-    background:#E8F4FF;
-    overflow-x:hidden;
-    min-height:100vh;
-  }
+/* ===== NAV ===== */
+.nav{
+  position:fixed;top:0;left:0;right:0;z-index:300;
+  background:rgba(255,255,255,0.97);
+  backdrop-filter:blur(12px);
+  padding:8px 14px;
+  display:flex;align-items:center;justify-content:space-between;
+  box-shadow:0 3px 20px rgba(0,0,0,0.15);
+  border-bottom:3px solid var(--gold);
+}
+.nav-title{font-family:'Baloo 2',cursive;font-weight:800;font-size:0.85rem;color:var(--teal);max-width:130px;line-height:1.2;}
+.nav-dots{display:flex;gap:4px;flex-wrap:wrap;justify-content:flex-end;max-width:220px;}
+.nav-dot{
+  width:26px;height:26px;border-radius:50%;
+  border:2.5px solid #ddd;background:white;
+  cursor:pointer;font-size:0.6rem;font-weight:800;color:#aaa;
+  transition:all 0.25s;display:flex;align-items:center;justify-content:center;
+}
+.nav-dot.active{border-color:var(--teal);background:var(--teal);color:white;transform:scale(1.15);}
+.nav-dot:hover{border-color:var(--teal);color:var(--teal);}
 
-  /* ===== TOP NAV ===== */
-  .nav {
-    position:fixed; top:0; left:0; right:0; z-index:200;
-    background:rgba(255,255,255,0.97);
-    backdrop-filter:blur(12px);
-    padding:8px 14px;
-    display:flex; align-items:center; justify-content:space-between;
-    box-shadow:0 3px 20px rgba(0,0,0,0.12);
-    border-bottom:3px solid var(--gold);
-  }
-  .nav-title {
-    font-family:'Baloo 2',cursive; font-weight:800;
-    font-size:0.85rem; color:var(--teal);
-    flex-shrink:0; max-width:120px; line-height:1.2;
-  }
-  .nav-right { display:flex; align-items:center; gap:8px; }
-  .nav-dots { display:flex; gap:4px; flex-wrap:wrap; justify-content:flex-end; max-width:200px; }
-  .nav-dot {
-    width:26px; height:26px; border-radius:50%;
-    border:2.5px solid #ddd; background:white;
-    cursor:pointer; font-size:0.6rem; font-weight:800;
-    color:#aaa; transition:all 0.25s;
-    display:flex; align-items:center; justify-content:center;
-  }
-  .nav-dot.active { border-color:var(--teal); background:var(--teal); color:white; transform:scale(1.15); }
-  .nav-dot:hover { border-color:var(--teal); color:var(--teal); }
+/* ===== BOOK WRAPPER ===== */
+.book{max-width:600px;margin:0 auto;padding:70px 14px 30px;}
 
-  /* ===== BOOK WRAPPER ===== */
-  .book { max-width:600px; margin:0 auto; padding:62px 12px 20px; }
+/* ===== COVER ===== */
+.book-cover{
+  border-radius:4px 20px 20px 4px;
+  background:linear-gradient(160deg,#0D9E8A 0%,#0EA5E9 50%,#6B3FA0 100%);
+  padding:36px 28px 28px 38px;
+  text-align:center;
+  box-shadow:
+    -10px 0 0 #0a6b5e,
+    -18px 0 0 #074d44,
+    -24px 6px 28px rgba(0,0,0,0.55),
+    8px 8px 36px rgba(0,0,0,0.4);
+  cursor:pointer;
+  position:relative;
+  min-height:460px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  overflow:hidden;
+  transition:all 0.6s cubic-bezier(0.4,0,0.2,1);
+}
+.book-cover::before{
+  content:'';position:absolute;left:0;top:0;bottom:0;width:26px;
+  background:linear-gradient(to right,#063d35,#0a6b5e,#0D9E8A);
+  border-radius:4px 0 0 4px;
+  box-shadow:inset -4px 0 8px rgba(0,0,0,0.3);
+}
+.book-cover::after{
+  content:'';position:absolute;left:26px;top:0;bottom:0;width:5px;
+  background:rgba(0,0,0,0.12);
+}
+.cover-pattern{
+  position:absolute;inset:0;opacity:0.06;
+  background-image:repeating-linear-gradient(45deg,white 0,white 1px,transparent 0,transparent 50%);
+  background-size:20px 20px;
+  border-radius:4px 20px 20px 4px;
+  pointer-events:none;
+}
+.cover-stars{color:var(--gold);font-size:0.95rem;letter-spacing:8px;margin-bottom:8px;}
+.cover-bismillah{font-family:'Amiri',serif;font-size:1.9rem;color:var(--gold);text-shadow:0 2px 12px rgba(0,0,0,0.4);line-height:1.5;margin-bottom:2px;}
+.cover-bismillah-en{color:rgba(255,255,255,0.85);font-size:0.78rem;font-style:italic;font-weight:700;margin-bottom:16px;}
+.cover-moon{font-size:4rem;display:block;margin:8px 0;filter:drop-shadow(0 0 16px rgba(244,196,48,0.7));animation:float 3s ease-in-out infinite;}
+.cover-title{font-family:'Baloo 2',cursive;font-weight:800;font-size:2.5rem;color:white;text-shadow:0 3px 16px rgba(0,0,0,0.35);line-height:1.1;}
+.cover-sub-title{font-family:'Baloo 2',cursive;font-size:1.5rem;color:var(--gold);font-weight:800;margin-top:2px;}
+.cover-tagline{font-size:0.88rem;font-weight:800;color:rgba(255,255,255,0.9);margin:10px 0;}
+.cover-icons{font-size:1.7rem;margin:8px 0;letter-spacing:8px;}
+.cover-badge{
+  display:inline-block;margin-top:10px;
+  background:var(--gold);color:var(--dark);
+  font-family:'Baloo 2',cursive;font-weight:800;
+  padding:7px 20px;border-radius:30px;font-size:0.88rem;
+  box-shadow:0 4px 16px rgba(244,196,48,0.5);
+}
+.cover-author{
+  margin-top:16px;padding-top:12px;
+  border-top:1.5px dashed rgba(255,255,255,0.38);
+  width:100%;text-align:center;
+}
+.cover-author-label{font-size:0.68rem;color:rgba(255,255,255,0.65);font-weight:700;margin-bottom:3px;}
+.cover-author-name{font-family:'Baloo 2',cursive;font-size:1rem;font-weight:800;color:var(--gold);}
+.cover-author-contact{font-size:0.72rem;color:rgba(255,255,255,0.75);font-weight:700;margin-top:2px;}
+.tap-hint{margin-top:16px;color:rgba(255,255,255,0.5);font-size:0.75rem;font-weight:700;animation:pulse 2s infinite;}
 
-  /* ===== PAGES ===== */
-  .page {
-    display:none;
-    animation:slideIn 0.4s cubic-bezier(0.34,1.56,0.64,1);
-    border-radius:28px;
-    padding:28px 22px 20px;
-    position:relative; overflow:hidden;
-    box-shadow:0 10px 40px rgba(0,0,0,0.18);
-  }
-  .page.active { display:block; }
-  @keyframes slideIn {
-    from { opacity:0; transform:translateY(18px) scale(0.97); }
-    to   { opacity:1; transform:translateY(0) scale(1); }
-  }
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+@keyframes pulse{0%,100%{opacity:0.4}50%{opacity:1}}
+@keyframes pageFlip{
+  from{opacity:0;transform:rotateY(-22deg) scale(0.97);}
+  to{opacity:1;transform:rotateY(0deg) scale(1);}
+}
 
-  /* ===== PAGE NAVIGATION BUTTONS ===== */
-  .page-nav {
-    display:flex; justify-content:space-between; align-items:center;
-    margin-top:22px; padding-top:16px;
-    border-top:2px dashed rgba(255,255,255,0.45);
-  }
-  .btn {
-    padding:11px 22px; border:none; border-radius:50px;
-    font-family:'Baloo 2',cursive; font-weight:800; font-size:0.95rem;
-    cursor:pointer; transition:all 0.25s;
-    box-shadow:0 4px 14px rgba(0,0,0,0.2);
-    touch-action:manipulation;
-  }
-  .btn:active { transform:scale(0.95); }
-  .btn:hover { transform:translateY(-2px); }
-  .btn-prev { background:rgba(255,255,255,0.3); color:white; border:2.5px solid rgba(255,255,255,0.6); }
-  .btn-next { background:white; color:var(--dark); font-weight:900; }
-  .btn-next:hover { background:var(--gold); }
-  .page-num { font-family:'Baloo 2',cursive; font-weight:800; color:rgba(255,255,255,0.9); font-size:0.85rem; }
+/* ===== OPEN BOOK ===== */
+.open-book{display:none;}
+.open-book.visible{display:block;}
 
-  /* ===== DECORATIONS ===== */
-  .deco { position:absolute; pointer-events:none; }
-  @keyframes twinkle { 0%,100%{opacity:0.5;transform:scale(0.85)} 50%{opacity:1;transform:scale(1.15)} }
-  @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
-  @keyframes bounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-6px)} }
+/* ===== PAGE SHEETS ===== */
+.page-sheet{
+  display:none;
+  border-radius:4px 20px 20px 4px;
+  position:relative;overflow:hidden;
+  box-shadow:
+    -10px 0 0 #c8b89a,
+    -18px 0 0 #b0a088,
+    -22px 6px 28px rgba(0,0,0,0.45),
+    6px 6px 28px rgba(0,0,0,0.25);
+  transform-origin:left center;
+}
+.page-sheet.active{
+  display:block;
+  animation:pageFlip 0.42s cubic-bezier(0.34,1.2,0.64,1);
+}
+.page-sheet::before{
+  content:'';position:absolute;left:0;top:0;bottom:0;width:24px;
+  background:linear-gradient(to right,#b0a088,#c8b89a,transparent);
+  z-index:5;pointer-events:none;
+}
+.page-sheet::after{
+  content:'';position:absolute;left:24px;top:0;bottom:0;width:3px;
+  background:rgba(0,0,0,0.07);z-index:5;pointer-events:none;
+}
+.page-lines{
+  position:absolute;inset:0;pointer-events:none;z-index:0;
+  background-image:repeating-linear-gradient(transparent,transparent 27px,rgba(120,100,50,0.07) 27px,rgba(120,100,50,0.07) 28px);
+}
+.page-inner{position:relative;z-index:2;padding:28px 22px 20px 36px;}
 
-  /* ===== COVER PAGE ===== */
-  #page-0 {
-    background:linear-gradient(160deg,#0D9E8A 0%,#0EA5E9 50%,#6B3FA0 100%);
-    text-align:center; min-height:auto;
-    display:flex; flex-direction:column; align-items:center; justify-content:center;
-    padding:32px 22px 24px;
-  }
-  .cover-stars { font-size:1.1rem; letter-spacing:8px; color:var(--gold); margin-bottom:8px; }
-  .bismillah-cover {
-    font-family:'Amiri',serif; font-size:1.9rem; font-weight:700;
-    color:var(--gold); text-shadow:0 2px 12px rgba(0,0,0,0.4);
-    line-height:1.5; margin-bottom:4px;
-  }
-  .bismillah-en {
-    color:rgba(255,255,255,0.88); font-size:0.82rem;
-    margin-bottom:20px; font-style:italic; font-weight:700;
-  }
-  .cover-moon {
-    font-size:4.5rem; margin:8px 0;
-    filter:drop-shadow(0 0 18px rgba(244,196,48,0.7));
-    animation:float 3s ease-in-out infinite;
-    display:block;
-  }
-  .cover-title {
-    font-family:'Baloo 2',cursive; font-weight:800;
-    font-size:2.5rem; color:white;
-    text-shadow:0 3px 16px rgba(0,0,0,0.35);
-    line-height:1.15; margin-bottom:8px;
-  }
-  .cover-sub {
-    font-size:1rem; font-weight:800; color:rgba(255,255,255,0.92);
-    margin-bottom:18px;
-  }
-  .cover-icons {
-    display:flex; gap:14px; justify-content:center;
-    font-size:2rem; margin:12px 0;
-    animation:bounce 2.5s ease-in-out infinite;
-  }
-  .cover-badge {
-    background:var(--gold); color:var(--dark);
-    font-family:'Baloo 2',cursive; font-weight:800;
-    padding:8px 22px; border-radius:50px; font-size:0.95rem;
-    margin-top:14px; box-shadow:0 4px 16px rgba(244,196,48,0.55);
-    display:inline-block;
-  }
+/* ===== PAGE GRADIENT BACKGROUNDS ===== */
+.bg-green  {background:linear-gradient(145deg,#0D9E8A,#16A34A);}
+.bg-blue   {background:linear-gradient(145deg,#2563EB,#0EA5E9);}
+.bg-orange {background:linear-gradient(145deg,#F97316,#E8316A);}
+.bg-purple {background:linear-gradient(145deg,#6B3FA0,#E8316A);}
+.bg-gold   {background:linear-gradient(145deg,#D4A017,#F97316);}
+.bg-teal-blue  {background:linear-gradient(145deg,#0D9E8A,#2563EB);}
+.bg-green-sky  {background:linear-gradient(145deg,#16A34A,#0EA5E9);}
+.bg-purple-teal{background:linear-gradient(145deg,#6B3FA0,#0D9E8A);}
+.bg-pink-orange{background:linear-gradient(145deg,#E8316A,#F97316);}
+.bg-dark-blue  {background:linear-gradient(145deg,#1E1B4B,#2563EB);}
 
-  /* ===== CHAPTER HEADER ===== */
-  .ch-header {
-    display:flex; align-items:center; gap:12px; margin-bottom:18px;
-  }
-  .ch-icon {
-    width:60px; height:60px; border-radius:18px; flex-shrink:0;
-    display:flex; align-items:center; justify-content:center;
-    font-size:2rem; box-shadow:0 5px 18px rgba(0,0,0,0.18);
-  }
-  .ch-meta {}
-  .ch-label {
-    font-family:'Baloo 2',cursive; font-weight:700;
-    font-size:0.72rem; letter-spacing:2.5px;
-    text-transform:uppercase; opacity:0.75; margin-bottom:2px;
-  }
-  .ch-title {
-    font-family:'Baloo 2',cursive; font-weight:800;
-    font-size:1.65rem; line-height:1.2;
-  }
+/* ===== CHAPTER HEADER ===== */
+.ch-header{display:flex;align-items:center;gap:12px;margin-bottom:16px;}
+.ch-icon{
+  width:58px;height:58px;border-radius:18px;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+  font-size:2rem;background:rgba(255,255,255,0.25);
+  box-shadow:0 4px 16px rgba(0,0,0,0.15);
+}
+.ch-label{font-family:'Baloo 2',cursive;font-weight:700;font-size:0.7rem;letter-spacing:2.5px;text-transform:uppercase;color:rgba(255,255,255,0.8);margin-bottom:2px;}
+.ch-title{font-family:'Baloo 2',cursive;font-weight:800;font-size:1.6rem;line-height:1.2;color:white;}
 
-  /* ===== BODY TEXT ===== */
-  .body-text {
-    font-size:1.05rem; line-height:1.8; font-weight:700;
-    margin-bottom:14px;
-  }
-  .body-text strong { font-weight:900; }
-  .big-text { font-size:1.3rem; font-weight:900; }
+/* ===== BODY TEXT ===== */
+.body-text{font-size:1rem;line-height:1.8;font-weight:700;margin-bottom:12px;color:white;}
+.body-text strong{font-weight:900;color:var(--gold);}
 
-  /* ===== INFO GRID ===== */
-  .info-grid {
-    display:grid; grid-template-columns:repeat(2,1fr);
-    gap:10px; margin:14px 0;
-  }
-  .info-grid.three { grid-template-columns:repeat(3,1fr); }
-  .info-card {
-    border-radius:18px; padding:14px 12px; text-align:center;
-    box-shadow:0 4px 14px rgba(0,0,0,0.12); transition:transform 0.25s;
-  }
-  .info-card:active { transform:scale(0.96); }
-  .info-card .ic-icon { font-size:2rem; margin-bottom:6px; display:block; }
-  .ic-label { font-family:'Baloo 2',cursive; font-weight:800; font-size:0.88rem; line-height:1.3; }
-  .ic-sub { font-size:0.75rem; font-weight:700; margin-top:4px; opacity:0.85; }
+/* ===== AYAH BOX ===== */
+.ayah-box{
+  background:rgba(255,255,255,0.2);border:2px solid rgba(255,255,255,0.35);
+  border-radius:18px;padding:16px;margin:12px 0;text-align:center;
+}
+.ayah-ar{font-family:'Amiri',serif;font-size:1.55rem;line-height:2;direction:rtl;color:white;margin-bottom:6px;}
+.ayah-latin{font-style:italic;font-size:0.78rem;color:rgba(255,255,255,0.82);font-weight:700;margin-bottom:3px;}
+.ayah-meaning{font-weight:900;font-size:0.92rem;color:white;}
+.ayah-ref{font-size:0.7rem;color:rgba(255,255,255,0.65);margin-top:4px;font-weight:700;}
 
-  /* ===== AYAH BOX ===== */
-  .ayah-box {
-    border-radius:20px; padding:18px 16px;
-    margin:14px 0; text-align:center;
-  }
-  .ayah-arabic {
-    font-family:'Amiri',serif; font-size:1.65rem; font-weight:700;
-    line-height:2; margin-bottom:8px; direction:rtl;
-  }
-  .ayah-trans { font-style:italic; font-size:0.88rem; font-weight:700; margin-bottom:4px; opacity:0.85; }
-  .ayah-meaning { font-weight:900; font-size:1rem; }
-  .ayah-ref { font-size:0.75rem; font-weight:700; opacity:0.65; margin-top:6px; }
+/* ===== INFO CARDS ===== */
+.info-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:12px 0;}
+.info-grid.three{grid-template-columns:repeat(3,1fr);}
+.info-card{background:rgba(255,255,255,0.22);border-radius:16px;padding:12px 10px;text-align:center;box-shadow:0 3px 12px rgba(0,0,0,0.12);}
+.ic-icon{font-size:1.8rem;display:block;margin-bottom:5px;}
+.ic-label{font-family:'Baloo 2',cursive;font-weight:800;font-size:0.85rem;color:white;line-height:1.3;}
+.ic-sub{font-size:0.7rem;font-weight:700;color:rgba(255,255,255,0.82);margin-top:3px;}
 
-  /* ===== LESSON BOX ===== */
-  .lesson-box {
-    border-radius:18px; padding:16px 18px; margin:14px 0;
-    display:flex; align-items:flex-start; gap:12px;
-  }
-  .lesson-box .l-icon { font-size:1.8rem; flex-shrink:0; }
-  .l-title { font-family:'Baloo 2',cursive; font-weight:800; font-size:0.95rem; margin-bottom:3px; }
-  .l-text { font-size:0.9rem; font-weight:700; line-height:1.6; }
+/* ===== LESSON BOX ===== */
+.lesson-box{
+  background:rgba(255,255,255,0.2);border-radius:16px;padding:14px 16px;margin:12px 0;
+  display:flex;align-items:flex-start;gap:10px;
+}
+.l-icon{font-size:1.7rem;flex-shrink:0;}
+.l-title{font-family:'Baloo 2',cursive;font-weight:800;font-size:0.9rem;color:white;margin-bottom:2px;}
+.l-text{font-size:0.84rem;font-weight:700;color:rgba(255,255,255,0.9);line-height:1.6;}
 
-  /* ===== DUA CARDS ===== */
-  .dua-card {
-    border-radius:20px; padding:18px 16px;
-    margin:12px 0; text-align:center;
-    box-shadow:0 5px 18px rgba(0,0,0,0.12);
-  }
-  .dua-when {
-    font-family:'Baloo 2',cursive; font-weight:800;
-    font-size:1rem; margin-bottom:10px;
-    display:flex; align-items:center; gap:6px; justify-content:center;
-  }
-  .dua-arabic {
-    font-family:'Amiri',serif; font-size:1.5rem; font-weight:700;
-    line-height:2; direction:rtl; margin-bottom:8px;
-  }
-  .dua-latin { font-style:italic; font-size:0.85rem; font-weight:700; margin-bottom:4px; opacity:0.85; }
-  .dua-meaning { font-weight:900; font-size:0.92rem; }
-  .dua-source { font-size:0.72rem; font-weight:700; opacity:0.6; margin-top:5px; }
+/* ===== DAY ROWS ===== */
+.day-row{
+  display:flex;align-items:center;gap:10px;
+  background:rgba(255,255,255,0.2);border-radius:14px;padding:10px 13px;margin-bottom:7px;
+}
+.day-badge{
+  font-family:'Baloo 2',cursive;font-weight:900;font-size:0.75rem;
+  background:rgba(255,255,255,0.35);color:white;
+  padding:4px 10px;border-radius:20px;white-space:nowrap;flex-shrink:0;
+}
+.day-text{font-size:0.88rem;font-weight:800;color:white;line-height:1.4;}
+.day-text strong{color:var(--gold);}
 
-  /* ===== HIGHLIGHT BOX ===== */
-  .highlight {
-    border-radius:18px; padding:14px 16px;
-    margin:14px 0; font-family:'Baloo 2',cursive;
-    font-weight:800; font-size:1.05rem; text-align:center;
-    border-left:5px solid rgba(255,255,255,0.6);
-    box-shadow:0 4px 14px rgba(0,0,0,0.1);
-  }
+/* ===== HIGHLIGHT ===== */
+.highlight{
+  background:rgba(255,255,255,0.2);border-left:4px solid rgba(255,255,255,0.6);
+  border-radius:14px;padding:12px 15px;margin:12px 0;
+  font-family:'Baloo 2',cursive;font-weight:800;font-size:0.95rem;color:white;text-align:center;
+}
+.highlight strong{color:var(--gold);}
 
-  /* ===== DAYS CREATION ===== */
-  .days-box { margin:14px 0; }
-  .day-row {
-    display:flex; align-items:center; gap:10px;
-    border-radius:16px; padding:11px 14px; margin-bottom:8px;
-    box-shadow:0 3px 12px rgba(0,0,0,0.1);
-  }
-  .day-badge {
-    font-family:'Baloo 2',cursive; font-weight:900; font-size:0.8rem;
-    padding:4px 10px; border-radius:30px; flex-shrink:0;
-    background:rgba(255,255,255,0.4); white-space:nowrap;
-  }
-  .day-text { font-weight:800; font-size:0.9rem; line-height:1.4; }
+/* ===== JJ GRID ===== */
+.jj-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 0;}
+.jj-card{border-radius:18px;padding:14px 12px;}
+.jj-card:first-child{background:rgba(255,255,255,0.22);}
+.jj-card:last-child{background:rgba(0,0,0,0.2);}
+.jj-title{font-family:'Baloo 2',cursive;font-weight:900;font-size:1rem;color:white;text-align:center;margin-bottom:8px;padding-bottom:6px;border-bottom:2px dashed rgba(255,255,255,0.35);}
+.jj-item{font-size:0.78rem;font-weight:800;color:white;margin-bottom:5px;}
 
-  /* ===== JANNAH / JAHANNAM ===== */
-  .jj-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin:14px 0; }
-  .jj-card { border-radius:20px; padding:16px 14px; box-shadow:0 5px 18px rgba(0,0,0,0.13); }
-  .jj-title {
-    font-family:'Baloo 2',cursive; font-weight:900; font-size:1.1rem;
-    text-align:center; margin-bottom:10px; padding-bottom:8px;
-    border-bottom:2.5px dashed rgba(255,255,255,0.4);
-  }
-  .jj-item {
-    display:flex; align-items:center; gap:6px;
-    font-size:0.8rem; font-weight:800; margin-bottom:6px; line-height:1.3;
-  }
+/* ===== DUA CARDS ===== */
+.dua-card{
+  background:rgba(255,255,255,0.2);border-radius:18px;padding:14px;margin:9px 0;text-align:center;
+  box-shadow:0 4px 14px rgba(0,0,0,0.1);
+}
+.dua-when{font-family:'Baloo 2',cursive;font-weight:800;font-size:0.9rem;color:white;margin-bottom:7px;}
+.dua-ar{font-family:'Amiri',serif;font-size:1.35rem;line-height:2;direction:rtl;color:white;margin-bottom:6px;}
+.dua-latin{font-style:italic;font-size:0.75rem;color:rgba(255,255,255,0.82);font-weight:700;margin-bottom:3px;}
+.dua-meaning{font-weight:900;font-size:0.84rem;color:white;}
+.dua-source{font-size:0.66rem;color:rgba(255,255,255,0.6);margin-top:4px;font-weight:700;}
 
-  /* ===== ACTIVITY PAGE ===== */
-  .activity-item {
-    border-radius:18px; padding:14px 16px; margin-bottom:10px;
-    display:flex; align-items:center; gap:12px;
-    box-shadow:0 4px 14px rgba(0,0,0,0.1);
-  }
-  .act-num {
-    width:36px; height:36px; border-radius:50%; flex-shrink:0;
-    display:flex; align-items:center; justify-content:center;
-    font-family:'Baloo 2',cursive; font-weight:900; font-size:1.1rem;
-    background:rgba(255,255,255,0.4); color:white;
-  }
-  .act-text { font-weight:800; font-size:0.92rem; line-height:1.5; }
+/* ===== ACTIVITY ===== */
+.activity-item{
+  background:rgba(255,255,255,0.22);border-radius:16px;padding:12px 14px;margin-bottom:9px;
+  display:flex;align-items:center;gap:10px;
+}
+.act-num{
+  width:34px;height:34px;border-radius:50%;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+  background:rgba(255,255,255,0.35);color:white;
+  font-family:'Baloo 2',cursive;font-weight:900;font-size:1rem;
+}
+.act-text{font-size:0.88rem;font-weight:800;color:white;line-height:1.5;}
+.act-text strong{color:var(--gold);}
 
-  /* ===== CLOSING PAGE ===== */
-  #page-closing {
-    background:linear-gradient(160deg,#6B3FA0 0%,#0D9E8A 100%);
-    text-align:center; padding:30px 22px 24px;
-  }
-  .closing-star { font-size:3rem; animation:bounce 2s infinite; margin-bottom:10px; display:block; }
-  .closing-title {
-    font-family:'Baloo 2',cursive; font-weight:900; font-size:1.7rem;
-    color:var(--gold); text-shadow:0 2px 10px rgba(0,0,0,0.3); margin-bottom:12px;
-  }
-  .closing-body {
-    color:white; font-weight:800; font-size:0.98rem; line-height:1.9;
-    margin-bottom:16px;
-  }
-  .closing-ayah {
-    background:rgba(255,255,255,0.15); border-radius:18px;
-    padding:14px 16px; margin:14px 0;
-    border:2px solid rgba(255,255,255,0.3);
-  }
-  .closing-author {
-    margin-top:16px; padding-top:14px;
-    border-top:2px dashed rgba(255,255,255,0.3);
-  }
-  .author-name { font-family:'Baloo 2',cursive; font-weight:900; font-size:1rem; color:var(--gold); }
-  .author-contact { color:rgba(255,255,255,0.8); font-size:0.82rem; font-weight:700; margin-top:4px; }
-  .jazak { font-family:'Amiri',serif; font-size:1rem; color:var(--gold); margin-top:8px; }
+/* ===== PAGE NAV ===== */
+.page-nav{
+  display:flex;justify-content:space-between;align-items:center;
+  margin-top:18px;padding-top:14px;
+  border-top:2px dashed rgba(255,255,255,0.4);
+}
+.btn{
+  padding:10px 20px;border:none;border-radius:50px;
+  font-family:'Baloo 2',cursive;font-weight:800;font-size:0.9rem;
+  cursor:pointer;transition:all 0.22s;
+  box-shadow:0 4px 14px rgba(0,0,0,0.2);touch-action:manipulation;
+}
+.btn:active{transform:scale(0.94);}
+.btn:hover{transform:translateY(-2px);}
+.btn-prev{background:rgba(255,255,255,0.25);color:white;border:2px solid rgba(255,255,255,0.55);}
+.btn-next{background:white;color:var(--dark);font-weight:900;}
+.btn-next:hover{background:var(--gold);}
+.btn-home{background:var(--gold);color:var(--dark);font-weight:900;}
+.page-num{font-family:'Baloo 2',cursive;font-weight:800;color:rgba(255,255,255,0.88);font-size:0.82rem;}
 
-  /* ===== PAGE-SPECIFIC COLORS ===== */
-  #page-1 { background:linear-gradient(145deg,#0D9E8A,#16A34A); color:white; }
-  #page-1 .ch-icon { background:rgba(255,255,255,0.25); }
-  #page-1 .ayah-box { background:rgba(255,255,255,0.2); color:white; border:2px solid rgba(255,255,255,0.35); }
-  #page-1 .info-card { background:rgba(255,255,255,0.22); color:white; }
-  #page-1 .lesson-box { background:rgba(255,255,255,0.2); color:white; }
-
-  #page-2 { background:linear-gradient(145deg,#2563EB,#0EA5E9); color:white; }
-  #page-2 .ch-icon { background:rgba(255,255,255,0.25); }
-  #page-2 .ayah-box { background:rgba(255,255,255,0.2); color:white; border:2px solid rgba(255,255,255,0.35); }
-  #page-2 .days-box .day-row { background:rgba(255,255,255,0.2); color:white; }
-  #page-2 .highlight { background:rgba(255,255,255,0.2); color:white; }
-
-  #page-3 { background:linear-gradient(145deg,#F97316,#E8316A); color:white; }
-  #page-3 .ch-icon { background:rgba(255,255,255,0.25); }
-  #page-3 .ayah-box { background:rgba(255,255,255,0.2); color:white; border:2px solid rgba(255,255,255,0.35); }
-  #page-3 .info-card { background:rgba(255,255,255,0.22); color:white; }
-
-  #page-4 { background:linear-gradient(145deg,#6B3FA0,#E8316A); color:white; }
-  #page-4 .ch-icon { background:rgba(255,255,255,0.25); }
-  #page-4 .info-card { background:rgba(255,255,255,0.22); color:white; }
-  #page-4 .lesson-box { background:rgba(255,255,255,0.2); color:white; }
-
-  #page-5 { background:linear-gradient(145deg,#D4A017,#F97316); color:white; }
-  #page-5 .ch-icon { background:rgba(255,255,255,0.25); }
-  #page-5 .ayah-box { background:rgba(255,255,255,0.2); color:white; border:2px solid rgba(255,255,255,0.35); }
-  #page-5 .info-card { background:rgba(255,255,255,0.22); color:white; }
-
-  #page-6 { background:linear-gradient(145deg,#0D9E8A,#2563EB); color:white; }
-  #page-6 .ch-icon { background:rgba(255,255,255,0.25); }
-  #page-6 .ayah-box { background:rgba(255,255,255,0.2); color:white; border:2px solid rgba(255,255,255,0.35); }
-  #page-6 .info-card { background:rgba(255,255,255,0.22); color:white; }
-
-  #page-7 { background:linear-gradient(145deg,#16A34A,#0EA5E9); color:white; }
-  #page-7 .ch-icon { background:rgba(255,255,255,0.25); }
-  #page-7 .jj-card:first-child { background:rgba(255,255,255,0.22); color:white; }
-  #page-7 .jj-card:last-child { background:rgba(0,0,0,0.2); color:white; }
-  #page-7 .highlight { background:rgba(255,255,255,0.2); color:white; }
-
-  #page-8 { background:linear-gradient(145deg,#6B3FA0,#0D9E8A); color:white; }
-  #page-8 .ch-icon { background:rgba(255,255,255,0.25); }
-  #page-8 .dua-card { color:white; }
-  #page-8 .dua-card:nth-child(1) { background:rgba(255,255,255,0.2); }
-  #page-8 .dua-card:nth-child(2) { background:rgba(0,0,0,0.18); }
-  #page-8 .dua-card:nth-child(3) { background:rgba(255,255,255,0.18); }
-
-  #page-9 { background:linear-gradient(145deg,#E8316A,#F97316); color:white; }
-  #page-9 .activity-item { background:rgba(255,255,255,0.22); color:white; }
-  #page-9 .highlight { background:rgba(255,255,255,0.2); color:white; }
-
-  /* Summary page */
-  #page-summary { background:linear-gradient(145deg,#1E1B4B,#2563EB); color:white; }
-  #page-summary .info-card { background:rgba(255,255,255,0.15); color:white; }
-
+/* ===== BACK COVER ===== */
+.back-cover-sheet{
+  display:none;
+  border-radius:4px 20px 20px 4px;
+  background:linear-gradient(160deg,#0D9E8A 0%,#0EA5E9 50%,#6B3FA0 100%);
+  position:relative;overflow:hidden;
+  box-shadow:
+    -10px 0 0 #0a6b5e,
+    -18px 0 0 #074d44,
+    -24px 6px 28px rgba(0,0,0,0.55),
+    8px 8px 36px rgba(0,0,0,0.4);
+  transform-origin:left center;
+}
+.back-cover-sheet.active{
+  display:block;
+  animation:pageFlip 0.42s cubic-bezier(0.34,1.2,0.64,1);
+}
+.back-cover-sheet::before{
+  content:'';position:absolute;left:0;top:0;bottom:0;width:26px;
+  background:linear-gradient(to right,#063d35,#0a6b5e,#0D9E8A);
+  border-radius:4px 0 0 4px;
+  box-shadow:inset -4px 0 8px rgba(0,0,0,0.3);
+  z-index:5;
+}
+.bc-pattern{
+  position:absolute;inset:0;opacity:0.06;
+  background-image:repeating-linear-gradient(45deg,white 0,white 1px,transparent 0,transparent 50%);
+  background-size:20px 20px;border-radius:4px 20px 20px 4px;
+  pointer-events:none;z-index:1;
+}
+.bc-inner{position:relative;z-index:2;padding:34px 26px 26px 42px;text-align:center;}
+.bc-star{font-size:2.8rem;display:block;animation:float 2.5s ease-in-out infinite;margin-bottom:10px;}
+.bc-bismillah{font-family:'Amiri',serif;font-size:1.7rem;color:var(--gold);text-shadow:0 2px 12px rgba(0,0,0,0.4);line-height:1.5;margin-bottom:3px;}
+.bc-bismillah-en{color:rgba(255,255,255,0.82);font-size:0.75rem;font-style:italic;font-weight:700;margin-bottom:18px;}
+.bc-title{font-family:'Baloo 2',cursive;font-weight:900;font-size:1.55rem;color:var(--gold);text-shadow:0 2px 10px rgba(0,0,0,0.3);margin-bottom:12px;line-height:1.3;}
+.bc-body{color:white;font-weight:800;font-size:0.9rem;line-height:2;margin-bottom:14px;}
+.bc-body strong{color:var(--gold);}
+.bc-ayah{
+  background:rgba(255,255,255,0.15);border:2px solid rgba(255,255,255,0.3);
+  border-radius:18px;padding:14px;margin:12px 0;
+}
+.bc-ayah-ar{font-family:'Amiri',serif;font-size:1.4rem;color:var(--gold);direction:rtl;line-height:2;margin-bottom:6px;}
+.bc-ayah-tr{color:rgba(255,255,255,0.9);font-weight:800;font-size:0.8rem;}
+.bc-ayah-ref{font-size:0.68rem;color:rgba(255,255,255,0.6);margin-top:3px;font-weight:700;}
+.bc-icons{font-size:1.7rem;margin:14px 0;letter-spacing:8px;}
+.bc-author{
+  margin-top:16px;padding-top:14px;
+  border-top:1.5px dashed rgba(255,255,255,0.35);
+}
+.bc-author-label{font-size:0.68rem;color:rgba(255,255,255,0.62);font-weight:700;margin-bottom:3px;}
+.bc-author-name{font-family:'Baloo 2',cursive;font-weight:900;font-size:1.05rem;color:var(--gold);}
+.bc-author-contact{font-size:0.74rem;color:rgba(255,255,255,0.78);font-weight:700;margin-top:3px;}
+.bc-jazak{font-family:'Amiri',serif;font-size:1rem;color:var(--gold);display:block;margin-top:8px;}
+.bc-sadaqah{font-size:0.72rem;color:rgba(255,255,255,0.68);font-weight:700;margin-top:5px;}
 </style>
 </head>
 <body>
 
-<!-- NAV -->
 <nav class="nav">
   <div class="nav-title">Allah — The Beginning &amp; The End</div>
-  <div class="nav-right">
-    <div class="nav-dots" id="navDots"></div>
-  </div>
+  <div class="nav-dots" id="navDots"></div>
 </nav>
 
 <div class="book">
 
-  <!-- ===== COVER ===== -->
-  <div class="page active" id="page-0">
-    <div class="cover-stars">✦ ✦ ✦ ✦ ✦</div>
-    <div class="bismillah-cover">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
-    <div class="bismillah-en">In the name of Allah, the Most Gracious, the Most Merciful</div>
-    <span class="cover-moon">🌙</span>
-    <div class="cover-title">Allah</div>
-    <div class="cover-title" style="font-size:1.6rem;margin-top:-8px;color:var(--gold);">The Beginning &amp; The End</div>
-    <div class="cover-sub">✨ A beautiful journey for little hearts ✨</div>
-    <div class="cover-icons">⭐ 🕌 📖 🌺 ⭐</div>
-    <div class="cover-badge">For Children Ages 3–10</div>
-    <div class="page-nav">
-      <span></span>
-      <span class="page-num">1 / 12</span>
-      <button class="btn btn-next" onclick="changePage(1)">Begin ➜</button>
+  <!-- ===== FRONT COVER ===== -->
+  <div id="coverWrap">
+    <div class="book-cover" onclick="openBook()">
+      <div class="cover-pattern"></div>
+      <div class="cover-stars">✦ ✦ ✦ ✦ ✦</div>
+      <div class="cover-bismillah">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
+      <div class="cover-bismillah-en">In the name of Allah, the Most Gracious, the Most Merciful</div>
+      <span class="cover-moon">🌙</span>
+      <div class="cover-title">Allah</div>
+      <div class="cover-sub-title">The Beginning &amp; The End</div>
+      <div class="cover-tagline">✨ A beautiful journey for little hearts ✨</div>
+      <div class="cover-icons">⭐ 🕌 📖 🌺 ⭐</div>
+      <div class="cover-badge">For Children Ages 3–10</div>
+      <div class="cover-author">
+        <div class="cover-author-label">Written with love by</div>
+        <div class="cover-author-name">Abu Zayd Suleiman Adam Gbale</div>
+        <div class="cover-author-contact">📞 +234 907 352 8916</div>
+      </div>
+      <div class="tap-hint">[ tap to open ]</div>
     </div>
   </div>
 
-  <!-- ===== PAGE 1 — WHO IS ALLAH ===== -->
-  <div class="page" id="page-1">
-    <div class="ch-header">
-      <div class="ch-icon">🌟</div>
-      <div class="ch-meta">
-        <div class="ch-label">Chapter 1</div>
-        <div class="ch-title">Who is Allah?</div>
-      </div>
-    </div>
-    <div class="ayah-box">
-      <div class="ayah-arabic">قُلْ هُوَ اللَّهُ أَحَدٌ</div>
-      <div class="ayah-trans">Qul huwa Allahu ahad</div>
-      <div class="ayah-meaning">"Say: He is Allah, the One!"</div>
-      <div class="ayah-ref">Surah Al-Ikhlas, 112:1</div>
-    </div>
-    <p class="body-text">Before there was anything — no sky, no earth, no stars, no you — <strong>there was Allah.</strong> He always was. He always will be. Nothing made Him. He is the <strong>One and Only God!</strong></p>
-    <div class="info-grid">
-      <div class="info-card"><span class="ic-icon">💚</span><div class="ic-label">Ar-Rahmān</div><div class="ic-sub">The Most Kind</div></div>
-      <div class="info-card"><span class="ic-icon">❤️</span><div class="ic-label">Ar-Raheem</div><div class="ic-sub">The Most Merciful</div></div>
-      <div class="info-card"><span class="ic-icon">💛</span><div class="ic-label">Al-Wadūd</div><div class="ic-sub">The Loving</div></div>
-      <div class="info-card"><span class="ic-icon">✨</span><div class="ic-label">Al-Khāliq</div><div class="ic-sub">The Creator</div></div>
-    </div>
-    <div class="lesson-box">
-      <div class="l-icon">💖</div>
-      <div><div class="l-title">Remember Always!</div><div class="l-text">Allah loves us MORE than our mamas and baba love us. We are never alone — He is always watching and caring!</div></div>
-    </div>
-    <div class="page-nav">
-      <button class="btn btn-prev" onclick="changePage(-1)">◀ Back</button>
-      <span class="page-num">2 / 12</span>
-      <button class="btn btn-next" onclick="changePage(1)">Next ▶</button>
-    </div>
-  </div>
+  <!-- ===== OPEN BOOK ===== -->
+  <div class="open-book" id="openBook">
 
-  <!-- ===== PAGE 2 — CREATION ===== -->
-  <div class="page" id="page-2">
-    <div class="ch-header">
-      <div class="ch-icon">🌍</div>
-      <div class="ch-meta">
-        <div class="ch-label">Chapter 2</div>
-        <div class="ch-title">How Allah Created Everything</div>
+    <!-- PAGE 1 — WHO IS ALLAH -->
+    <div class="page-sheet bg-green" id="pg0">
+      <div class="page-lines"></div>
+      <div class="page-inner">
+        <div class="ch-header">
+          <div class="ch-icon">🌟</div>
+          <div><div class="ch-label">Chapter 1</div><div class="ch-title">Who is Allah?</div></div>
+        </div>
+        <div class="ayah-box">
+          <div class="ayah-ar">قُلْ هُوَ اللَّهُ أَحَدٌ</div>
+          <div class="ayah-latin">Qul huwa Allahu ahad</div>
+          <div class="ayah-meaning">"Say: He is Allah, the One!"</div>
+          <div class="ayah-ref">Surah Al-Ikhlas, 112:1</div>
+        </div>
+        <p class="body-text">Before there was anything — no sky, no earth, no stars, no you — <strong>there was Allah.</strong> He always was. He always will be. Nothing made Him. He is the <strong>One and Only God!</strong></p>
+        <div class="info-grid">
+          <div class="info-card"><span class="ic-icon">💚</span><div class="ic-label">Ar-Rahmān</div><div class="ic-sub">The Most Kind</div></div>
+          <div class="info-card"><span class="ic-icon">❤️</span><div class="ic-label">Ar-Raheem</div><div class="ic-sub">The Most Merciful</div></div>
+          <div class="info-card"><span class="ic-icon">💛</span><div class="ic-label">Al-Wadūd</div><div class="ic-sub">The Loving</div></div>
+          <div class="info-card"><span class="ic-icon">✨</span><div class="ic-label">Al-Khāliq</div><div class="ic-sub">The Creator</div></div>
+        </div>
+        <div class="lesson-box">
+          <div class="l-icon">💖</div>
+          <div><div class="l-title">Remember Always!</div><div class="l-text">Allah loves us MORE than our mamas and baba love us. We are never alone — He is always watching and caring!</div></div>
+        </div>
+        <div class="page-nav">
+          <button class="btn btn-prev" onclick="goTo(-1)">◀ Back</button>
+          <span class="page-num">1 / 11</span>
+          <button class="btn btn-next" onclick="goTo(1)">Next ▶</button>
+        </div>
       </div>
     </div>
-    <div class="ayah-box">
-      <div class="ayah-arabic">كُن فَيَكُونُ</div>
-      <div class="ayah-trans">Kun fayakūn</div>
-      <div class="ayah-meaning">"Be! And it is!" — Surah Ya-Sin, 36:82</div>
-    </div>
-    <p class="body-text big-text" style="text-align:center;">All Allah says is <strong>"KUN!" — "BE!"</strong><br/>And it becomes! 🤩</p>
-    <div class="days-box">
-      <div class="day-row"><div class="day-badge">Days 1&2</div><div class="day-text">🌌 The Heavens — sky, stars and all space!</div></div>
-      <div class="day-row"><div class="day-badge">Days 3&4</div><div class="day-text">🏔️ The Earth — mountains, rivers, trees!</div></div>
-      <div class="day-row"><div class="day-badge">Days 5&6</div><div class="day-text">🦁 Animals, birds, fish — and <strong>Adam (AS)</strong>!</div></div>
-    </div>
-    <div class="highlight" style="background:rgba(255,255,255,0.25);color:white;">
-      🌸 Every time you see something beautiful — say <strong>SubhanAllah!</strong><br/>"How perfect is Allah!"
-    </div>
-    <div class="page-nav">
-      <button class="btn btn-prev" onclick="changePage(-1)">◀ Back</button>
-      <span class="page-num">3 / 12</span>
-      <button class="btn btn-next" onclick="changePage(1)">Next ▶</button>
-    </div>
-  </div>
 
-  <!-- ===== PAGE 3 — WONDERS ===== -->
-  <div class="page" id="page-3">
-    <div class="ch-header">
-      <div class="ch-icon">🌈</div>
-      <div class="ch-meta">
-        <div class="ch-label">Chapter 3</div>
-        <div class="ch-title">Allah's Amazing Wonders!</div>
+    <!-- PAGE 2 — CREATION -->
+    <div class="page-sheet bg-blue" id="pg1">
+      <div class="page-lines"></div>
+      <div class="page-inner">
+        <div class="ch-header">
+          <div class="ch-icon">🌍</div>
+          <div><div class="ch-label">Chapter 2</div><div class="ch-title">How Allah Created Everything</div></div>
+        </div>
+        <div class="ayah-box">
+          <div class="ayah-ar">كُن فَيَكُونُ</div>
+          <div class="ayah-latin">Kun fayakūn</div>
+          <div class="ayah-meaning">"Be! And it is!" — Surah Ya-Sin, 36:82</div>
+        </div>
+        <p class="body-text" style="text-align:center;font-size:1.15rem;">All Allah says is <strong>"KUN!" — "BE!"</strong><br/>And it becomes! 🤩</p>
+        <div class="day-row"><div class="day-badge">Days 1 &amp; 2</div><div class="day-text">🌌 The Heavens — sky, stars and all space!</div></div>
+        <div class="day-row"><div class="day-badge">Days 3 &amp; 4</div><div class="day-text">🏔️ The Earth — mountains, rivers, trees!</div></div>
+        <div class="day-row"><div class="day-badge">Days 5 &amp; 6</div><div class="day-text">🦁 Animals, birds, fish — and <strong>Adam (AS)</strong>!</div></div>
+        <div class="highlight">🌸 Every time you see something beautiful — say <strong>SubhanAllah!</strong><br/>"How perfect is Allah!"</div>
+        <div class="page-nav">
+          <button class="btn btn-prev" onclick="goTo(-1)">◀ Back</button>
+          <span class="page-num">2 / 11</span>
+          <button class="btn btn-next" onclick="goTo(1)">Next ▶</button>
+        </div>
       </div>
     </div>
-    <p class="body-text">Look around! Every single thing is a <strong>wonder from Allah.</strong> He made them all — just for us! 💝</p>
-    <div class="info-grid three">
-      <div class="info-card"><span class="ic-icon">☀️</span><div class="ic-label">The Sun</div><div class="ic-sub">Warm &amp; bright!</div></div>
-      <div class="info-card"><span class="ic-icon">🌙</span><div class="ic-label">The Moon</div><div class="ic-sub">Lamp at night</div></div>
-      <div class="info-card"><span class="ic-icon">🌊</span><div class="ic-label">The Oceans</div><div class="ic-sub">Fish &amp; treasures!</div></div>
-      <div class="info-card"><span class="ic-icon">🦋</span><div class="ic-label">Butterflies</div><div class="ic-sub">Allah's colours!</div></div>
-      <div class="info-card"><span class="ic-icon">🌈</span><div class="ic-label">The Rainbow</div><div class="ic-sub">7 beautiful colours</div></div>
-      <div class="info-card" style="background:rgba(255,255,255,0.35);"><span class="ic-icon">🫶</span><div class="ic-label">YOU!</div><div class="ic-sub">His greatest wonder!</div></div>
-    </div>
-    <div class="ayah-box">
-      <div class="ayah-arabic">فَبِأَيِّ آلَاءِ رَبِّكُمَا تُكَذِّبَانِ</div>
-      <div class="ayah-meaning">"So which of the favours of your Lord will you deny?"</div>
-      <div class="ayah-ref">Surah Ar-Rahman, 55:13</div>
-    </div>
-    <div class="page-nav">
-      <button class="btn btn-prev" onclick="changePage(-1)">◀ Back</button>
-      <span class="page-num">4 / 12</span>
-      <button class="btn btn-next" onclick="changePage(1)">Next ▶</button>
-    </div>
-  </div>
 
-  <!-- ===== PAGE 4 — WHAT ALLAH ASKS ===== -->
-  <div class="page" id="page-4">
-    <div class="ch-header">
-      <div class="ch-icon">🕌</div>
-      <div class="ch-meta">
-        <div class="ch-label">Chapter 4</div>
-        <div class="ch-title">What Allah Asks Us To Do</div>
+    <!-- PAGE 3 — WONDERS -->
+    <div class="page-sheet bg-orange" id="pg2">
+      <div class="page-lines"></div>
+      <div class="page-inner">
+        <div class="ch-header">
+          <div class="ch-icon">🌈</div>
+          <div><div class="ch-label">Chapter 3</div><div class="ch-title">Allah's Amazing Wonders!</div></div>
+        </div>
+        <p class="body-text">Look around! Every single thing is a <strong>wonder from Allah.</strong> He made them all — just for us! 💝</p>
+        <div class="info-grid three">
+          <div class="info-card"><span class="ic-icon">☀️</span><div class="ic-label">The Sun</div><div class="ic-sub">Warm &amp; bright!</div></div>
+          <div class="info-card"><span class="ic-icon">🌙</span><div class="ic-label">The Moon</div><div class="ic-sub">Lamp at night</div></div>
+          <div class="info-card"><span class="ic-icon">🌊</span><div class="ic-label">The Oceans</div><div class="ic-sub">Fish &amp; treasures!</div></div>
+          <div class="info-card"><span class="ic-icon">🦋</span><div class="ic-label">Butterflies</div><div class="ic-sub">Allah's colours!</div></div>
+          <div class="info-card"><span class="ic-icon">🌈</span><div class="ic-label">The Rainbow</div><div class="ic-sub">7 beautiful colours</div></div>
+          <div class="info-card" style="background:rgba(255,255,255,0.38);"><span class="ic-icon">🫶</span><div class="ic-label">YOU!</div><div class="ic-sub">His greatest wonder!</div></div>
+        </div>
+        <div class="ayah-box">
+          <div class="ayah-ar">فَبِأَيِّ آلَاءِ رَبِّكُمَا تُكَذِّبَانِ</div>
+          <div class="ayah-meaning">"So which of the favours of your Lord will you deny?"</div>
+          <div class="ayah-ref">Surah Ar-Rahman, 55:13</div>
+        </div>
+        <div class="page-nav">
+          <button class="btn btn-prev" onclick="goTo(-1)">◀ Back</button>
+          <span class="page-num">3 / 11</span>
+          <button class="btn btn-next" onclick="goTo(1)">Next ▶</button>
+        </div>
       </div>
     </div>
-    <p class="body-text">Because Allah loves us, He gave us <strong>rules to keep us safe and happy.</strong> Following them is how we show Allah we love Him too! 💝</p>
-    <div class="info-grid">
-      <div class="info-card"><span class="ic-icon">🙏</span><div class="ic-label">Pray (Salah)</div><div class="ic-sub">5 times a day — like calling your best Friend!</div></div>
-      <div class="info-card"><span class="ic-icon">🤝</span><div class="ic-label">Be Kind</div><div class="ic-sub">To parents, friends, and even animals!</div></div>
-      <div class="info-card"><span class="ic-icon">💬</span><div class="ic-label">Tell the Truth</div><div class="ic-sub">Allah loves those who are honest. Always!</div></div>
-      <div class="info-card"><span class="ic-icon">🎁</span><div class="ic-label">Help Others</div><div class="ic-sub">Share, help carry things, be gentle!</div></div>
-    </div>
-    <div class="lesson-box">
-      <div class="l-icon">👨‍👩‍👧</div>
-      <div><div class="l-title">Love Your Parents! 💕</div><div class="l-text">Allah said: be kind to your parents. They are a beautiful gift from Allah! Always obey them and make them happy.</div></div>
-    </div>
-    <div class="page-nav">
-      <button class="btn btn-prev" onclick="changePage(-1)">◀ Back</button>
-      <span class="page-num">5 / 12</span>
-      <button class="btn btn-next" onclick="changePage(1)">Next ▶</button>
-    </div>
-  </div>
 
-  <!-- ===== PAGE 5 — LOVING ALLAH ===== -->
-  <div class="page" id="page-5">
-    <div class="ch-header">
-      <div class="ch-icon">❤️</div>
-      <div class="ch-meta">
-        <div class="ch-label">Chapter 5</div>
-        <div class="ch-title">Loving &amp; Respecting Allah</div>
+    <!-- PAGE 4 — WHAT ALLAH ASKS -->
+    <div class="page-sheet bg-purple" id="pg3">
+      <div class="page-lines"></div>
+      <div class="page-inner">
+        <div class="ch-header">
+          <div class="ch-icon">🕌</div>
+          <div><div class="ch-label">Chapter 4</div><div class="ch-title">What Allah Asks Us To Do</div></div>
+        </div>
+        <p class="body-text">Because Allah loves us, He gave us <strong>rules to keep us safe and happy.</strong> Following them is how we show Allah we love Him too! 💝</p>
+        <div class="info-grid">
+          <div class="info-card"><span class="ic-icon">🙏</span><div class="ic-label">Pray (Salah)</div><div class="ic-sub">5 times a day — like calling your best Friend!</div></div>
+          <div class="info-card"><span class="ic-icon">🤝</span><div class="ic-label">Be Kind</div><div class="ic-sub">To parents, friends, and even animals!</div></div>
+          <div class="info-card"><span class="ic-icon">💬</span><div class="ic-label">Tell the Truth</div><div class="ic-sub">Allah loves those who are honest. Always!</div></div>
+          <div class="info-card"><span class="ic-icon">🎁</span><div class="ic-label">Help Others</div><div class="ic-sub">Share, help carry things, be gentle!</div></div>
+        </div>
+        <div class="lesson-box">
+          <div class="l-icon">👨‍👩‍👧</div>
+          <div><div class="l-title">Love Your Parents! 💕</div><div class="l-text">Allah said: be kind to your parents. They are a beautiful gift from Allah! Always obey them and make them happy.</div></div>
+        </div>
+        <div class="page-nav">
+          <button class="btn btn-prev" onclick="goTo(-1)">◀ Back</button>
+          <span class="page-num">4 / 11</span>
+          <button class="btn btn-next" onclick="goTo(1)">Next ▶</button>
+        </div>
       </div>
     </div>
-    <p class="body-text">We love Allah because <strong>He loves us first!</strong> He gave us everything: our life, our food, our family, our smiles! 😊</p>
-    <div class="info-grid">
-      <div class="info-card"><span class="ic-icon">💖</span><div class="ic-label">Love Allah</div><div class="ic-sub">He is good, kind, and always there!</div></div>
-      <div class="info-card"><span class="ic-icon">🌟</span><div class="ic-label">Respect Allah</div><div class="ic-sub">He is the Greatest — nothing is bigger!</div></div>
-      <div class="info-card"><span class="ic-icon">✅</span><div class="ic-label">Obey Allah</div><div class="ic-sub">Follow His rules — He rewards us!</div></div>
-      <div class="info-card"><span class="ic-icon">🤲</span><div class="ic-label">Trust Allah</div><div class="ic-sub">He knows what is best — always!</div></div>
-    </div>
-    <div class="ayah-box">
-      <div class="ayah-arabic">وَهُوَ مَعَكُمْ أَيْنَمَا كُنتُمْ</div>
-      <div class="ayah-trans">Wa huwa ma'akum ayna mā kuntum</div>
-      <div class="ayah-meaning">"And He is with you wherever you are."</div>
-      <div class="ayah-ref">Surah Al-Hadid, 57:4</div>
-    </div>
-    <div class="page-nav">
-      <button class="btn btn-prev" onclick="changePage(-1)">◀ Back</button>
-      <span class="page-num">6 / 12</span>
-      <button class="btn btn-next" onclick="changePage(1)">Next ▶</button>
-    </div>
-  </div>
 
-  <!-- ===== PAGE 6 — FROM ALLAH, TO ALLAH ===== -->
-  <div class="page" id="page-6">
-    <div class="ch-header">
-      <div class="ch-icon">🦋</div>
-      <div class="ch-meta">
-        <div class="ch-label">Chapter 6</div>
-        <div class="ch-title">From Allah We Come, To Allah We Return</div>
+    <!-- PAGE 5 — LOVING ALLAH -->
+    <div class="page-sheet bg-gold" id="pg4">
+      <div class="page-lines"></div>
+      <div class="page-inner">
+        <div class="ch-header">
+          <div class="ch-icon">❤️</div>
+          <div><div class="ch-label">Chapter 5</div><div class="ch-title">Loving &amp; Respecting Allah</div></div>
+        </div>
+        <p class="body-text">We love Allah because <strong>He loves us first!</strong> He gave us everything: our life, our food, our family, our smiles! 😊</p>
+        <div class="info-grid">
+          <div class="info-card"><span class="ic-icon">💖</span><div class="ic-label">Love Allah</div><div class="ic-sub">He is good, kind, and always there!</div></div>
+          <div class="info-card"><span class="ic-icon">🌟</span><div class="ic-label">Respect Allah</div><div class="ic-sub">He is the Greatest — nothing is bigger!</div></div>
+          <div class="info-card"><span class="ic-icon">✅</span><div class="ic-label">Obey Allah</div><div class="ic-sub">Follow His rules — He rewards us!</div></div>
+          <div class="info-card"><span class="ic-icon">🤲</span><div class="ic-label">Trust Allah</div><div class="ic-sub">He knows what is best — always!</div></div>
+        </div>
+        <div class="ayah-box">
+          <div class="ayah-ar">وَهُوَ مَعَكُمْ أَيْنَمَا كُنتُمْ</div>
+          <div class="ayah-latin">Wa huwa ma'akum ayna mā kuntum</div>
+          <div class="ayah-meaning">"And He is with you wherever you are."</div>
+          <div class="ayah-ref">Surah Al-Hadid, 57:4</div>
+        </div>
+        <div class="page-nav">
+          <button class="btn btn-prev" onclick="goTo(-1)">◀ Back</button>
+          <span class="page-num">5 / 11</span>
+          <button class="btn btn-next" onclick="goTo(1)">Next ▶</button>
+        </div>
       </div>
     </div>
-    <div class="ayah-box">
-      <div class="ayah-arabic">إِنَّا لِلَّهِ وَإِنَّا إِلَيْهِ رَاجِعُونَ</div>
-      <div class="ayah-trans">Innā lillāhi wa innā ilayhi rāji'ūn</div>
-      <div class="ayah-meaning">"Indeed, we belong to Allah and to Him we will return."</div>
-      <div class="ayah-ref">Surah Al-Baqarah, 2:156</div>
-    </div>
-    <p class="body-text">This life is like a <strong>beautiful journey</strong> — but it is not forever. One day comes a new life — much bigger and better! 🌟</p>
-    <div class="info-grid info-grid-three" style="grid-template-columns:repeat(3,1fr)">
-      <div class="info-card"><span class="ic-icon">✨</span><div class="ic-label">We Begin With Allah</div><div class="ic-sub">He created us from nothing!</div></div>
-      <div class="info-card"><span class="ic-icon">🌍</span><div class="ic-label">We Live on Earth</div><div class="ic-sub">A test — to do good!</div></div>
-      <div class="info-card"><span class="ic-icon">🦋</span><div class="ic-label">We Return to Allah</div><div class="ic-sub">Like a butterfly coming home</div></div>
-    </div>
-    <div class="page-nav">
-      <button class="btn btn-prev" onclick="changePage(-1)">◀ Back</button>
-      <span class="page-num">7 / 12</span>
-      <button class="btn btn-next" onclick="changePage(1)">Next ▶</button>
-    </div>
-  </div>
 
-  <!-- ===== PAGE 7 — JANNAH & JAHANNAM ===== -->
-  <div class="page" id="page-7">
-    <div class="ch-header">
-      <div class="ch-icon">🏡</div>
-      <div class="ch-meta">
-        <div class="ch-label">Chapter 7</div>
-        <div class="ch-title">Jannah &amp; Jahannam</div>
+    <!-- PAGE 6 — FROM ALLAH, TO ALLAH -->
+    <div class="page-sheet bg-teal-blue" id="pg5">
+      <div class="page-lines"></div>
+      <div class="page-inner">
+        <div class="ch-header">
+          <div class="ch-icon">🦋</div>
+          <div><div class="ch-label">Chapter 6</div><div class="ch-title">From Allah We Come, To Allah We Return</div></div>
+        </div>
+        <div class="ayah-box">
+          <div class="ayah-ar">إِنَّا لِلَّهِ وَإِنَّا إِلَيْهِ رَاجِعُونَ</div>
+          <div class="ayah-latin">Innā lillāhi wa innā ilayhi rāji'ūn</div>
+          <div class="ayah-meaning">"Indeed, we belong to Allah and to Him we will return."</div>
+          <div class="ayah-ref">Surah Al-Baqarah, 2:156</div>
+        </div>
+        <p class="body-text">This life is like a <strong>beautiful journey</strong> — but it is not forever. One day comes a new life — much bigger and better! 🌟</p>
+        <div class="info-grid three">
+          <div class="info-card"><span class="ic-icon">✨</span><div class="ic-label">We Begin With Allah</div><div class="ic-sub">He created us from nothing!</div></div>
+          <div class="info-card"><span class="ic-icon">🌍</span><div class="ic-label">We Live on Earth</div><div class="ic-sub">A test — to do good!</div></div>
+          <div class="info-card"><span class="ic-icon">🦋</span><div class="ic-label">We Return to Allah</div><div class="ic-sub">Like a butterfly coming home</div></div>
+        </div>
+        <div class="page-nav">
+          <button class="btn btn-prev" onclick="goTo(-1)">◀ Back</button>
+          <span class="page-num">6 / 11</span>
+          <button class="btn btn-next" onclick="goTo(1)">Next ▶</button>
+        </div>
       </div>
     </div>
-    <p class="body-text">After this life, <strong>Allah will be our Judge.</strong> He is Al-'Adl — The Most Fair. He rewards every single good deed! 🌟</p>
-    <div class="jj-grid">
-      <div class="jj-card">
-        <div class="jj-title">🏡 Jannah<br/><span style="font-size:0.8rem;opacity:0.85">Paradise!</span></div>
-        <div class="jj-item">🍎 Delicious fruits always</div>
-        <div class="jj-item">🍯 Rivers of honey &amp; milk</div>
-        <div class="jj-item">🏰 Beautiful palaces</div>
-        <div class="jj-item">😊 No sadness, ever!</div>
-        <div class="jj-item">✨ Seeing Allah's Light</div>
-      </div>
-      <div class="jj-card">
-        <div class="jj-title">🔥 Choose Right<br/><span style="font-size:0.8rem;opacity:0.85">Every day!</span></div>
-        <div class="jj-item">🙏 Say sorry &amp; truly try</div>
-        <div class="jj-item">💛 Allah always forgives</div>
-        <div class="jj-item">⭐ Keep doing good deeds</div>
-        <div class="jj-item">📖 Learn &amp; pray daily</div>
-        <div class="jj-item">✅ Choose Jannah today!</div>
-      </div>
-    </div>
-    <div class="highlight" style="background:rgba(255,255,255,0.22);color:white;font-size:0.95rem;">
-      🌟 Every good act counts! Even a <strong>smile</strong> is a good deed! 😊
-    </div>
-    <div class="page-nav">
-      <button class="btn btn-prev" onclick="changePage(-1)">◀ Back</button>
-      <span class="page-num">8 / 12</span>
-      <button class="btn btn-next" onclick="changePage(1)">Next ▶</button>
-    </div>
-  </div>
 
-  <!-- ===== PAGE 8 — DUAS ===== -->
-  <div class="page" id="page-8">
-    <div class="ch-header">
-      <div class="ch-icon">🤲</div>
-      <div class="ch-meta">
-        <div class="ch-label">Chapter 8</div>
-        <div class="ch-title">Our Duas to Allah</div>
+    <!-- PAGE 7 — JANNAH & JAHANNAM -->
+    <div class="page-sheet bg-green-sky" id="pg6">
+      <div class="page-lines"></div>
+      <div class="page-inner">
+        <div class="ch-header">
+          <div class="ch-icon">🏡</div>
+          <div><div class="ch-label">Chapter 7</div><div class="ch-title">Jannah &amp; Jahannam</div></div>
+        </div>
+        <p class="body-text">After this life, <strong>Allah will be our Judge.</strong> He is Al-'Adl — The Most Fair. He rewards every single good deed! 🌟</p>
+        <div class="jj-grid">
+          <div class="jj-card">
+            <div class="jj-title">🏡 Jannah<br/><span style="font-size:0.75rem;opacity:0.85">Paradise!</span></div>
+            <div class="jj-item">🍎 Delicious fruits always</div>
+            <div class="jj-item">🍯 Rivers of honey &amp; milk</div>
+            <div class="jj-item">🏰 Beautiful palaces</div>
+            <div class="jj-item">😊 No sadness, ever!</div>
+            <div class="jj-item">✨ Seeing Allah's Light</div>
+          </div>
+          <div class="jj-card">
+            <div class="jj-title">🔥 Choose Right<br/><span style="font-size:0.75rem;opacity:0.85">Every day!</span></div>
+            <div class="jj-item">🙏 Say sorry &amp; truly try</div>
+            <div class="jj-item">💛 Allah always forgives</div>
+            <div class="jj-item">⭐ Keep doing good deeds</div>
+            <div class="jj-item">📖 Learn &amp; pray daily</div>
+            <div class="jj-item">✅ Choose Jannah today!</div>
+          </div>
+        </div>
+        <div class="highlight">🌟 Every good act counts! Even a <strong>smile</strong> is a good deed! 😊</div>
+        <div class="page-nav">
+          <button class="btn btn-prev" onclick="goTo(-1)">◀ Back</button>
+          <span class="page-num">7 / 11</span>
+          <button class="btn btn-next" onclick="goTo(1)">Next ▶</button>
+        </div>
       </div>
     </div>
-    <p class="body-text"><strong>Dua means talking to Allah.</strong> You can ask Him for anything! He hears every word, every whisper, even thoughts in your heart. 💝</p>
-    <div class="dua-card">
-      <div class="dua-when">🌙 Before Sleep</div>
-      <div class="dua-arabic">اللَّهُمَّ بِاسْمِكَ أَمُوتُ وَأَحْيَا</div>
-      <div class="dua-latin">Allāhumma bismika amūtu wa ahyā</div>
-      <div class="dua-meaning">"O Allah, in Your name I sleep and in Your name I wake."</div>
-      <div class="dua-source">Sahih Bukhari</div>
-    </div>
-    <div class="dua-card">
-      <div class="dua-when">☀️ When Waking Up</div>
-      <div class="dua-arabic">الْحَمْدُ لِلَّهِ الَّذِي أَحْيَانَا بَعْدَ مَا أَمَاتَنَا</div>
-      <div class="dua-latin">Alhamdu lillāhil-ladhī ahyānā ba'da mā amātanā</div>
-      <div class="dua-meaning">"All praise to Allah who gave us life after sleep."</div>
-      <div class="dua-source">Sahih Bukhari</div>
-    </div>
-    <div class="dua-card">
-      <div class="dua-when">🍽️ Before Eating</div>
-      <div class="dua-arabic">بِسْمِ اللَّهِ</div>
-      <div class="dua-latin">Bismillāh</div>
-      <div class="dua-meaning">"In the name of Allah."</div>
-      <div class="dua-source">Abu Dawud</div>
-    </div>
-    <div class="page-nav">
-      <button class="btn btn-prev" onclick="changePage(-1)">◀ Back</button>
-      <span class="page-num">9 / 12</span>
-      <button class="btn btn-next" onclick="changePage(1)">Next ▶</button>
-    </div>
-  </div>
 
-  <!-- ===== PAGE 9 — ACTIVITY ===== -->
-  <div class="page" id="page-9">
-    <div class="ch-header">
-      <div class="ch-icon">🎨</div>
-      <div class="ch-meta">
-        <div class="ch-label">Activity Time!</div>
-        <div class="ch-title">Let's Play &amp; Learn!</div>
+    <!-- PAGE 8 — DUAS -->
+    <div class="page-sheet bg-purple-teal" id="pg7">
+      <div class="page-lines"></div>
+      <div class="page-inner">
+        <div class="ch-header">
+          <div class="ch-icon">🤲</div>
+          <div><div class="ch-label">Chapter 8</div><div class="ch-title">Our Duas to Allah</div></div>
+        </div>
+        <p class="body-text"><strong>Dua means talking to Allah.</strong> You can ask Him for anything! He hears every word, every whisper, even thoughts in your heart. 💝</p>
+        <div class="dua-card">
+          <div class="dua-when">🌙 Before Sleep</div>
+          <div class="dua-ar">اللَّهُمَّ بِاسْمِكَ أَمُوتُ وَأَحْيَا</div>
+          <div class="dua-latin">Allāhumma bismika amūtu wa ahyā</div>
+          <div class="dua-meaning">"O Allah, in Your name I sleep and in Your name I wake."</div>
+          <div class="dua-source">Sahih Bukhari</div>
+        </div>
+        <div class="dua-card">
+          <div class="dua-when">☀️ When Waking Up</div>
+          <div class="dua-ar" style="font-size:1.05rem;">الْحَمْدُ لِلَّهِ الَّذِي أَحْيَانَا بَعْدَ مَا أَمَاتَنَا</div>
+          <div class="dua-latin">Alhamdu lillāhil-ladhī ahyānā ba'da mā amātanā</div>
+          <div class="dua-meaning">"All praise to Allah who gave us life after sleep."</div>
+          <div class="dua-source">Sahih Bukhari</div>
+        </div>
+        <div class="dua-card">
+          <div class="dua-when">🍽️ Before Eating</div>
+          <div class="dua-ar">بِسْمِ اللَّهِ</div>
+          <div class="dua-latin">Bismillāh</div>
+          <div class="dua-meaning">"In the name of Allah."</div>
+          <div class="dua-source">Abu Dawud</div>
+        </div>
+        <div class="page-nav">
+          <button class="btn btn-prev" onclick="goTo(-1)">◀ Back</button>
+          <span class="page-num">8 / 11</span>
+          <button class="btn btn-next" onclick="goTo(1)">Next ▶</button>
+        </div>
       </div>
     </div>
-    <div class="activity-item">
-      <div class="act-num">1</div>
-      <div class="act-text">🌸 <strong>Name 3 things Allah created that you love!</strong> Draw them on paper!</div>
-    </div>
-    <div class="activity-item">
-      <div class="act-num">2</div>
-      <div class="act-text">🙏 <strong>How many times do we pray every day?</strong> Count on your fingers! (Hint: 5!)</div>
-    </div>
-    <div class="activity-item">
-      <div class="act-num">3</div>
-      <div class="act-text">💛 <strong>Say Alhamdulillah</strong> for 3 things Allah gave you right now!</div>
-    </div>
-    <div class="activity-item">
-      <div class="act-num">4</div>
-      <div class="act-text">🌙 <strong>Tonight, say the sleep dua</strong> before you close your eyes!</div>
-    </div>
-    <div class="highlight" style="background:rgba(255,255,255,0.25);color:white;font-size:0.95rem;">
-      🌟 You are amazing! Allah made YOU special! 💖
-    </div>
-    <div class="page-nav">
-      <button class="btn btn-prev" onclick="changePage(-1)">◀ Back</button>
-      <span class="page-num">10 / 12</span>
-      <button class="btn btn-next" onclick="changePage(1)">Next ▶</button>
-    </div>
-  </div>
 
-  <!-- ===== PAGE SUMMARY ===== -->
-  <div class="page" id="page-summary">
-    <div class="ch-header">
-      <div class="ch-icon" style="background:rgba(255,255,255,0.2);">📚</div>
-      <div class="ch-meta">
-        <div class="ch-label" style="color:rgba(255,255,255,0.8)">What Did We Learn?</div>
-        <div class="ch-title">Our Big Lessons! 🌟</div>
+    <!-- PAGE 9 — ACTIVITY -->
+    <div class="page-sheet bg-pink-orange" id="pg8">
+      <div class="page-lines"></div>
+      <div class="page-inner">
+        <div class="ch-header">
+          <div class="ch-icon">🎨</div>
+          <div><div class="ch-label">Activity Time!</div><div class="ch-title">Let's Play &amp; Learn!</div></div>
+        </div>
+        <div class="activity-item"><div class="act-num">1</div><div class="act-text">🌸 <strong>Name 3 things Allah created that you love!</strong> Draw them on paper!</div></div>
+        <div class="activity-item"><div class="act-num">2</div><div class="act-text">🙏 <strong>How many times do we pray every day?</strong> Count on your fingers! (Hint: 5!)</div></div>
+        <div class="activity-item"><div class="act-num">3</div><div class="act-text">💛 <strong>Say Alhamdulillah</strong> for 3 things Allah gave you right now!</div></div>
+        <div class="activity-item"><div class="act-num">4</div><div class="act-text">🌙 <strong>Tonight, say the sleep dua</strong> before you close your eyes!</div></div>
+        <div class="highlight">🌟 You are amazing! Allah made YOU special! 💖</div>
+        <div class="page-nav">
+          <button class="btn btn-prev" onclick="goTo(-1)">◀ Back</button>
+          <span class="page-num">9 / 11</span>
+          <button class="btn btn-next" onclick="goTo(1)">Next ▶</button>
+        </div>
       </div>
     </div>
-    <div class="info-grid">
-      <div class="info-card"><span class="ic-icon">☝️</span><div class="ic-label">Allah is One</div><div class="ic-sub">He always was &amp; always will be!</div></div>
-      <div class="info-card"><span class="ic-icon">🌍</span><div class="ic-label">He Created Everything</div><div class="ic-sub">In 6 days — just saying KUN!</div></div>
-      <div class="info-card"><span class="ic-icon">💖</span><div class="ic-label">He Loves Us</div><div class="ic-sub">More than anyone in the world!</div></div>
-      <div class="info-card"><span class="ic-icon">📜</span><div class="ic-label">He Gave Us Rules</div><div class="ic-sub">To keep us safe &amp; happy</div></div>
-      <div class="info-card"><span class="ic-icon">🦋</span><div class="ic-label">We Return to Him</div><div class="ic-sub">This life is a journey home</div></div>
-      <div class="info-card"><span class="ic-icon">🏡</span><div class="ic-label">Jannah Awaits!</div><div class="ic-sub">For every good thing we do!</div></div>
-    </div>
-    <div class="page-nav">
-      <button class="btn btn-prev" onclick="changePage(-1)">◀ Back</button>
-      <span class="page-num">11 / 12</span>
-      <button class="btn btn-next" onclick="changePage(1)">Next ▶</button>
-    </div>
-  </div>
 
-  <!-- ===== CLOSING PAGE ===== -->
-  <div class="page" id="page-closing">
-    <span class="closing-star">⭐</span>
-    <div class="bismillah-cover" style="font-size:1.5rem;margin-bottom:8px;">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
-    <div class="closing-title">Remember Always,<br/>Little Star! 🌟</div>
-    <div class="closing-body">
-      Allah made you. Allah loves you.<br/>
-      Allah watches over you every single moment.<br/>
-      No matter where you go — <strong>you are never alone.</strong><br/>
-      He is closer to you than your own heartbeat. 💖<br/><br/>
-      Do good. Be kind. Say your duas. Pray to Him.<br/>
-      And one day, In shaa Allah —<br/>
-      <strong>you will meet Him in Jannah.</strong> 🏡✨
+    <!-- PAGE 10 — SUMMARY -->
+    <div class="page-sheet bg-dark-blue" id="pg9">
+      <div class="page-lines"></div>
+      <div class="page-inner">
+        <div class="ch-header">
+          <div class="ch-icon">📚</div>
+          <div><div class="ch-label">What Did We Learn?</div><div class="ch-title">Our Big Lessons! 🌟</div></div>
+        </div>
+        <div class="info-grid">
+          <div class="info-card"><span class="ic-icon">☝️</span><div class="ic-label">Allah is One</div><div class="ic-sub">He always was &amp; always will be!</div></div>
+          <div class="info-card"><span class="ic-icon">🌍</span><div class="ic-label">He Created Everything</div><div class="ic-sub">In 6 days — just saying KUN!</div></div>
+          <div class="info-card"><span class="ic-icon">💖</span><div class="ic-label">He Loves Us</div><div class="ic-sub">More than anyone in the world!</div></div>
+          <div class="info-card"><span class="ic-icon">📜</span><div class="ic-label">He Gave Us Rules</div><div class="ic-sub">To keep us safe &amp; happy</div></div>
+          <div class="info-card"><span class="ic-icon">🦋</span><div class="ic-label">We Return to Him</div><div class="ic-sub">This life is a journey home</div></div>
+          <div class="info-card"><span class="ic-icon">🏡</span><div class="ic-label">Jannah Awaits!</div><div class="ic-sub">For every good thing we do!</div></div>
+        </div>
+        <div class="page-nav">
+          <button class="btn btn-prev" onclick="goTo(-1)">◀ Back</button>
+          <span class="page-num">10 / 11</span>
+          <button class="btn btn-next" onclick="goTo(1)">Next ▶</button>
+        </div>
+      </div>
     </div>
-    <div class="closing-ayah">
-      <div class="ayah-arabic" style="color:var(--gold);font-size:1.3rem;">وَهُوَ مَعَكُمْ أَيْنَمَا كُنتُمْ</div>
-      <div style="color:rgba(255,255,255,0.9);font-weight:800;font-size:0.85rem;margin-top:6px;">"And He is with you wherever you are. Allah sees all that you do."<br/><span style="font-size:0.75rem;opacity:0.7">Surah Al-Hadid, 57:4</span></div>
-    </div>
-    <div class="closing-author">
-      <div style="color:rgba(255,255,255,0.7);font-size:0.75rem;font-weight:700;margin-bottom:4px;">Written with love by</div>
-      <div class="author-name">Abu Zayd Suleiman Adam Gbale</div>
-      <div class="author-contact">📞 +234 907 352 8916</div>
-      <div class="jazak">جَزَاكُمُ اللَّهُ خَيْرًا</div>
-      <div style="color:rgba(255,255,255,0.75);font-size:0.78rem;font-weight:700;margin-top:4px;">May Allah accept this work as Sadaqah Jariyah. Ameen.</div>
-    </div>
-    <div class="page-nav">
-      <button class="btn btn-prev" onclick="changePage(-1)">◀ Back</button>
-      <span class="page-num">12 / 12</span>
-      <button class="btn" style="background:var(--gold);color:var(--dark);font-weight:900;" onclick="changePage(-11)">🏠 Home</button>
-    </div>
-  </div>
 
+    <!-- PAGE 11 — BACK COVER (mirrors front cover design) -->
+    <div class="back-cover-sheet" id="pg10">
+      <div class="bc-pattern"></div>
+      <div class="bc-inner">
+        <span class="bc-star">⭐</span>
+        <div class="bc-bismillah">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
+        <div class="bc-bismillah-en">In the name of Allah, the Most Gracious, the Most Merciful</div>
+        <div class="bc-title">Remember Always,<br/>Little Star! 🌟</div>
+        <div class="bc-body">
+          Allah made you. Allah loves you.<br/>
+          Allah watches over you every single moment.<br/>
+          No matter where you go — <strong>you are never alone.</strong><br/>
+          He is closer to you than your own heartbeat. 💖<br/><br/>
+          Do good. Be kind. Say your duas. Pray to Him.<br/>
+          And one day, In shaa Allah —<br/>
+          <strong>you will meet Him in Jannah.</strong> 🏡✨
+        </div>
+        <div class="bc-ayah">
+          <div class="bc-ayah-ar">وَهُوَ مَعَكُمْ أَيْنَمَا كُنتُمْ</div>
+          <div class="bc-ayah-tr">"And He is with you wherever you are. Allah sees all that you do."</div>
+          <div class="bc-ayah-ref">Surah Al-Hadid, 57:4</div>
+        </div>
+        <div class="bc-icons">⭐ 🕌 📖 🌺 ⭐</div>
+        <div class="bc-author">
+          <div class="bc-author-label">Written with love by</div>
+          <div class="bc-author-name">Abu Zayd Suleiman Adam Gbale</div>
+          <div class="bc-author-contact">📞 +234 907 352 8916</div>
+          <span class="bc-jazak">جَزَاكُمُ اللَّهُ خَيْرًا</span>
+          <div class="bc-sadaqah">May Allah accept this work as Sadaqah Jariyah. Ameen.</div>
+        </div>
+        <div class="page-nav" style="border-top:2px dashed rgba(255,255,255,0.38);margin-top:18px;padding-top:14px;">
+          <button class="btn btn-prev" onclick="goTo(-1)">◀ Back</button>
+          <span class="page-num">11 / 11</span>
+          <button class="btn btn-home" onclick="closeBook()">🏠 Home</button>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /open-book -->
 </div><!-- /book -->
 
 <script>
-  const pages = document.querySelectorAll('.page');
-  const dotsContainer = document.getElementById('navDots');
-  let current = 0;
-  const total = pages.length;
+  const TOTAL = 11;
+  let cur = 0;
+  let isOpen = false;
 
-  // Build dots
-  for(let i=0;i<total;i++){
-    const d = document.createElement('button');
-    d.className='nav-dot'+(i===0?' active':'');
-    d.textContent = i+1;
-    d.onclick=()=>goTo(i);
-    dotsContainer.appendChild(d);
+  const coverWrap = document.getElementById('coverWrap');
+  const openBookEl = document.getElementById('openBook');
+  const navDots = document.getElementById('navDots');
+
+  const allPages = [];
+  for(let i=0;i<10;i++) allPages.push(document.getElementById('pg'+i));
+  allPages.push(document.getElementById('pg10'));
+
+  function buildDots(){
+    navDots.innerHTML='';
+    for(let i=0;i<TOTAL;i++){
+      const d=document.createElement('button');
+      d.className='nav-dot'+(i===cur&&isOpen?' active':'');
+      d.textContent=i+1;
+      const idx=i;
+      d.onclick=()=>{
+        if(!isOpen){openBook();setTimeout(()=>showPage(idx),620);}
+        else showPage(idx);
+      };
+      navDots.appendChild(d);
+    }
   }
 
-  function goTo(idx){
-    if(idx<0||idx>=total)return;
-    pages[current].classList.remove('active');
-    dotsContainer.children[current].classList.remove('active');
-    current=idx;
-    pages[current].classList.add('active');
-    dotsContainer.children[current].classList.add('active');
+  function updateDots(){
+    navDots.querySelectorAll('.nav-dot').forEach((d,i)=>d.classList.toggle('active',i===cur&&isOpen));
+  }
+
+  function showPage(idx){
+    allPages.forEach((p,i)=>p.classList.toggle('active',i===idx));
+    cur=idx; updateDots();
     window.scrollTo({top:0,behavior:'smooth'});
   }
 
-  function changePage(dir){ goTo(current+dir); }
+  function goTo(dir){
+    const next=cur+dir;
+    if(next<0){closeBook();return;}
+    if(next>=TOTAL)return;
+    showPage(next);
+  }
 
-  // Swipe support
+  function openBook(){
+    if(isOpen)return;
+    isOpen=true;
+    const cover=coverWrap.querySelector('.book-cover');
+    cover.style.transform='rotateY(-18deg) scale(0.94) translateX(-10px)';
+    cover.style.opacity='0';
+    setTimeout(()=>{
+      coverWrap.style.display='none';
+      openBookEl.style.display='block';
+      openBookEl.classList.add('visible');
+      showPage(0);
+    },580);
+    buildDots();
+  }
+
+  function closeBook(){
+    isOpen=false;
+    allPages.forEach(p=>p.classList.remove('active'));
+    openBookEl.style.display='none';
+    openBookEl.classList.remove('visible');
+    coverWrap.style.display='block';
+    const cover=coverWrap.querySelector('.book-cover');
+    cover.style.transform='';
+    cover.style.opacity='';
+    cur=0; buildDots();
+    window.scrollTo({top:0,behavior:'smooth'});
+  }
+
   let startX=0;
-  document.addEventListener('touchstart',e=>startX=e.touches[0].clientX,{passive:true});
+  document.addEventListener('touchstart',e=>{startX=e.touches[0].clientX;},{passive:true});
   document.addEventListener('touchend',e=>{
     const diff=startX-e.changedTouches[0].clientX;
-    if(Math.abs(diff)>50) diff>0?changePage(1):changePage(-1);
+    if(Math.abs(diff)>50&&isOpen){diff>0?goTo(1):goTo(-1);}
   },{passive:true});
+
+  buildDots();
 </script>
 </body>
-  </html>
+</html>
